@@ -1,0 +1,153 @@
+A.Get all the countries from the Asia continent/region using the filter function.
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <script src="script.js"></script>
+</body>
+</html>
+
+SCRIPT.JS
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result =JSON.parse(request.response);
+console.log(result);
+var popu =result.filter((ele)=>ele.region=="Asia").map((ele)=>ele.name);
+console.log(popu);
+}
+
+B.Get all the countries with a population of less than 2 lakhs using filter function
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <script src="script.js"></script>
+</body>
+</html>
+
+SCRIPT.JS
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result =JSON.parse(request.response);
+console.log(result);
+var popu =result.filter((ele)=>ele.population<200000);
+console.log(popu);
+var result1=popu.map((ele)=>ele.name);
+console.log(result1);
+}
+
+C.Print the following details name,capital,flag using foreach function.
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <script src="script.js"></script>
+</body>
+</html>
+
+SCRIPT.JS
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result =JSON.parse(request.response);
+console.log(result);
+result.forEach((result)=>{
+    console.log(`${result.name}${result.flag}${result.capital}`)
+})
+
+}
+  
+
+
+
+D.Print the total population of countries using reduce function
+
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <script src="script.js"></script>
+</body>
+</html>
+
+SCRIPT.JS
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result =JSON.parse(request.response);
+console.log(result);
+var res =result.reduce((acc,cv)=>acc+cv.population,0);
+console.log(res);
+}
+
+
+E.Print the country which uses US Dollars as currency
+HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+   <script src="script.js"></script>
+</body>
+</html>
+  
+
+SCRIPT.JS
+
+var request=new XMLHttpRequest();
+request.open("GET","https://restcountries.com/v2/all");
+request.send();
+request.onload=function(){
+var result =JSON.parse(request.response);
+console.log(result);
+var res =result.filter((ele)=>ele.currencies !==undefined);{
+var ans = res.filter((dollar)=>(dollar.currencies[0].name ==="United States Dollar"))
+console.log(ans);
+}
+}
+
+
+
